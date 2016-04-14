@@ -14,3 +14,16 @@ function check_credential() {
     Write-Verbose 'No credentials specified, trying Windows Credential Manager'
     $global:tfs.Credential = Get-TFSSToredCredential
 }
+
+function invoke_rest($Params) {
+    $Params.Credential  = $global:tfs.credential
+
+    try {
+        Invoke-RestMethod @Params
+    } catch {
+        $err = $_
+        try { $err = $_ | ConvertFrom-Json } catch { throw $err }
+        $err = ($err | fl * | Out-String) -join '`n'
+        Write-Error $err
+    }
+}

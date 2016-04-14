@@ -18,7 +18,8 @@ function Get-TFSBuilds {
     $uri = "$proj_uri/_apis/build/builds?api-version=" + $global:tfs.api_version
     Write-Verbose "URI: $uri"
 
-    $r = Invoke-RestMethod -Uri $uri -Method Get -Credential $global:tfs.credential
+    $params = @{ Uri = $uri; Method = 'Get'}
+    $r = invoke_rest $params
     if ($Raw) { return $r.value }
 
     $props = 'buildNumber', 'result',

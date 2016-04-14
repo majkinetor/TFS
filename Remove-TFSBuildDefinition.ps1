@@ -1,5 +1,5 @@
 # Author: Miodrag Milic <miodrag.milic@gmail.com>
-# Last Change: 11-Apr-2016.
+# Last Change: 14-Apr-2016.
 
 <#
 .SYNOPSIS
@@ -18,8 +18,9 @@ function Remove-TFSBuildDefinition {
     Write-Verbose "Build definition id: $Id"
 
     $uri = "$proj_uri/_apis/build/definitions/$($Id)?api-version=" + $global:tfs.api_version
-    Write-Verobse "URI: $uri"
-    $r = Invoke-RestMethod -Uri $uri -Method Delete -Credential $global:tfs.credential
-    $r
+    Write-Verbose "URI: $uri"
+
+    $params = @{ Uri = $uri; Method = 'Delete'}
+    invoke_rest $params
 }
 

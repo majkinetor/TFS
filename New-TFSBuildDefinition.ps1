@@ -1,16 +1,14 @@
 # Author: Miodrag Milic <miodrag.milic@gmail.com>
-# Last Change: 11-Apr-2016.
+# Last Change: 14-Apr-2016.
 
 <#
 .SYNOPSIS
     Create/import build definition
-
-.NOTE
-    Build definition property "revision" must point to the latest one in order for import to succeed.
 #>
 function New-TFSBuildDefinition {
     [CmdletBinding()]
     param (
+        #File that contains json description of the build
         [string] $JsonFile
     )
     check_credential
@@ -21,6 +19,6 @@ function New-TFSBuildDefinition {
     Write-Verbose "URI: $uri"
 
     $body = gc $JsonFile -Raw -ea Stop
-    $r = Invoke-RestMethod -Uri $uri -Method Post -Credential $global:tfs.credential -Body $body -ContentType 'application/json'
-    $r
+    $params = @{ Uri = $uri; Method = 'Post'; Body = $body; ContentType = 'application/json' }
+    invoke_rest $params
 }

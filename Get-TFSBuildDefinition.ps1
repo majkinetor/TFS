@@ -20,11 +20,13 @@ function Get-TFSBuildDefinition{
     [CmdletBinding()]
     param(
         #Build defintion id [int] or name [string]
-        [string]$Id,
+        $Id,
         #Return raw data instead of table
         [switch]$Raw,
         #Export the build to the specified JSON file
-        [string]$OutFile
+        [string]$OutFile,
+        #Revision of the build to get
+        [int]$Revision=0
     )
     check_credential
 
@@ -32,10 +34,12 @@ function Get-TFSBuildDefinition{
     if ($Id -eq $null) { throw "Resource with that name doesn't exist" }
     Write-Verbose "Build definition id: $Id"
 
-    $uri = "$proj_uri/_apis/build/definitions/$($Id)?api-version=" + $global:tfs.api_version
+    if ($Revision) { $rev = "revision=$Revision&" }
+    $uri = "$proj_uri/_apis/build/definitions/$($Id)?$($rev)api-version=" + $global:tfs.api_version
     Write-Verbose "URI: $uri"
 
-    $r = Invoke-RestMethod -Uri $uri -Method Get -Credential $global:tfs.credential
+    $params = @{ Uri = $uri; Method = 'Get'}
+    $r = invoke_rest $params
     if ($Raw) { return $r }
 
     $res = $r # | select name, type, quality, queue, Build, Triggers, Options, Variables, RetentionRules, Repository
@@ -45,4 +49,4 @@ function Get-TFSBuildDefinition{
     } else { $res }
 }
 
-sal def Get-TFSBuildDefintion
+sal def Get-TFSBuildDefinition

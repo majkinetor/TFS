@@ -1,5 +1,5 @@
 # Author: Miodrag Milic <miodrag.milic@gmail.com>
-# Last Change: 11-Apr-2016.
+# Last Change: 14-Apr-2016.
 
 <#
 .SYNOPSIS
@@ -22,6 +22,6 @@ function New-TFSProject($Name, $Description) {
     }
 
     $body = $body | ConvertTo-Json
-    $r = Invoke-RestMethod -Uri $uri -Method Post -Credential $global:tfs.credential -Body $body -ContentType 'application/json'
-    $r
+    $params = @{ Uri = $uri; Method = 'Post'; Body = $body; ContentType = 'application/json' }
+    invoke_rest $params
 }

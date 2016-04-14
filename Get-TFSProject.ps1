@@ -1,5 +1,5 @@
 # Author: Miodrag Milic <miodrag.milic@gmail.com>
-# Last Change: 11-Apr-2016.
+# Last Change: 14-Apr-2016.
 
 <#
 .SYNOPSIS
@@ -20,6 +20,6 @@ function Get-TFSProject {
     $uri = "$collection_uri/_apis/projects/$($Id)?includeCapabilities=true&api-version=" + $global:tfs.api_version
     Write-Verbose "URI: $uri"
 
-    $r = Invoke-RestMethod -Uri $uri -Method Get -Credential $global:tfs.credential
-    $r
+    $params = @{ Uri = $uri; Method = 'Get'}
+    invoke_rest $params
 }

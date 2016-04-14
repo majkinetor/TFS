@@ -30,7 +30,8 @@ function Get-TFSBuildLogs{
     $uri = "$proj_uri/_apis/build/builds/$Id/logs?api-version=" + $global:tfs.api_version
     Write-Verbose "Logs URI: $uri"
 
-    $r = Invoke-RestMethod -Uri $uri -Method Get -Credential $global:tfs.credential
+    $params = @{ Uri = $uri; Method = 'Get'}
+    $r = invoke_rest $params
 
     $lines = @()
     $root_server_name = $global:tfs.root_url -split '/' | select -Index 2
@@ -41,7 +42,8 @@ function Get-TFSBuildLogs{
         $new_url = $new_url -join '/'
 
         Write-Verbose "Log URI: $new_url"
-        $l = Invoke-RestMethod -Uri $new_url -Method Get -Credential $global:tfs.credential
+        $params = @{ Uri = $new_url; Method = 'Get'}
+        $l = invoke_rest $params
         $lines += $l.value -replace '\..+?Z'
         $lines += "="*150
     }

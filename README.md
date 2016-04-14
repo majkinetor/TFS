@@ -39,7 +39,7 @@ TFS Credentials
 
 Module keeps TFS credential in the `$tfs.Credentials`. If not specified you will be prompted for the credentials when running any of the functions. If the module [CredentialManager](https://github.com/davotronic5000/PowerShell_Credential_Manager) is available (to install it run `Install-Module CredentialManager` in Powreshell 5+) credentials will be stored in the Windows Credential Manager and after first run, you will be able to use any function in any PS session using your stored credentials.
 
-To use ad-hoc credentials when you have your main credential stored simply use: 
+To use _ad hoc_ credentials when you have your main credential stored simply use: 
     
     $tfs.Credentials = Get-Credential
 
@@ -67,6 +67,7 @@ Builds
     Get-TFSBuilds
     Get-TFSBuildLogs
     Get-TFSBuildLogs 220
+    Remove-TFSBuild 220
 
 
 Build Definitions
@@ -82,6 +83,8 @@ Repositories
 ------------
 
     Get-TFSGitRepositories
+    New-TFSGitRepository test
+    Remove-TFSGitRepository test
 
 Troubleshooting
 ---------------

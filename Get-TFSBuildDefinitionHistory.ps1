@@ -1,5 +1,5 @@
 # Author: Miodrag Milic <miodrag.milic@gmail.com>
-# Last Change: 11-Apr-2016.
+# Last Change: 14-Apr-2016.
 
 <#
 .SYNOPSIS
@@ -23,7 +23,8 @@ function Get-TFSBuildDefinitionHistory{
     $uri = "$proj_uri/_apis/build/definitions/$($Id)/revisions?api-version=" + $global:tfs.api_version
     Write-Verbose "URI: $uri"
 
-    $r = Invoke-RestMethod -Uri $uri -Method Get -Credential $global:tfs.credential
+    $params = @{ Uri = $uri; Method = 'Get' }
+    $r = invoke_rest $params
     if ($Raw) { return $r.value }
 
     $props = 'revision', 'comment', 'changeType',
