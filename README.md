@@ -68,6 +68,10 @@ Builds
     Get-TFSBuildLogs
     Get-TFSBuildLogs 220
     Remove-TFSBuild 220
+    
+    'production', 'v1.0' | % { Add-TFSBuildTag 220 $_ }
+    Get-TFSBuilds -Tag production
+    Remove-TFSBuildTag 220 production
 
 
 Build Definitions
