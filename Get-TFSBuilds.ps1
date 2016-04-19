@@ -1,5 +1,5 @@
 # Author: Miodrag Milic <miodrag.milic@gmail.com>
-# Last Change: 14-Apr-2016.
+# Last Change: 19-Apr-2016.
 
 <#
 .SYNOPSIS
@@ -27,6 +27,7 @@ function Get-TFSBuilds {
     if ($Raw) { return $r.value }
 
     $props = 'buildNumber', 'result',
+             @{ N='Definition'   ; E={ $_.definition.name }},
              @{ N='Start time'   ; E={ (get-date $_.startTime).ToString($time_format) }},
              @{ N='Duration (m)' ; E={ [math]::round( ((get-date $_.finishTime) - (get-date $_.startTime)).TotalMinutes, 1)}},
              'tags'

@@ -1,5 +1,5 @@
 # Author: Miodrag Milic <miodrag.milic@gmail.com>
-# Last Change: 14-Apr-2016.
+# Last Change: 19-Apr-2016.
 
 <#
 .SYNOPSIS
@@ -24,3 +24,4 @@ function Remove-TFSBuildDefinition {
     invoke_rest $params
 }
 
+sal rmdef Remove-TFSBuildDefinition

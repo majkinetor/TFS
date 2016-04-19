@@ -1,5 +1,5 @@
 # Author: Miodrag Milic <miodrag.milic@gmail.com>
-# Last Change: 14-Apr-2016.
+# Last Change: 15-Apr-2016.
 
 <#
 .SYNOPSIS
@@ -20,7 +20,7 @@ function Get-TFSBuildDefinition{
     [CmdletBinding()]
     param(
         #Build defintion id [int] or name [string]
-        $Id,
+        $Id=0,      #without 0 API by default returns item with id=1...
         #Return raw data instead of table
         [switch]$Raw,
         #Export the build to the specified JSON file
@@ -31,8 +31,8 @@ function Get-TFSBuildDefinition{
     check_credential
 
     if ($Id.GetType() -eq [string]) { $Id = Get-TFSBuildDefinitions | ? name -eq $Id | select -Expand id }
-    if ($Id -eq $null) { throw "Resource with that name doesn't exist" }
-    Write-Verbose "Build definition id: $Id"
+    if ( [String]::IsNullOrEmpty($Id) ) { throw "Resource with that name doesn't exist" }
+    Write-Verbose "Build definition id: '$Id'"
 
     if ($Revision) { $rev = "revision=$Revision&" }
     $uri = "$proj_uri/_apis/build/definitions/$($Id)?$($rev)api-version=" + $global:tfs.api_version
