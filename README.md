@@ -65,18 +65,24 @@ Builds
 ------
 
     Get-TFSBuilds
+
     Get-TFSBuildLogs
     Get-TFSBuildLogs 220
+
     Remove-TFSBuild 220
+    
+    'production', 'v1.0' | % { Add-TFSBuildTag 220 $_ }
+    Get-TFSBuilds -Tag production
+    Remove-TFSBuildTag 220 production
 
 
 Build Definitions
 -----------------
 
-    Get-TFSBuildDefinition BuildXYZ -Export
+    Get-TFSBuildDefinition BuildXYZ -JsonFile BuildXYZ.json
     Get-TFSBuildDefinitionHistory BuildXYZ
-    New-TFSBuildDefinition -JsonFile ProjectXYZ-BuildXYZ.json
-    Update-TFSBuildDefinition -JsonFile ProjectXYZ-BuildXYZ.json
+    New-TFSBuildDefinition -JsonFile BuildXYZ.json
+    Update-TFSBuildDefinition -JsonFile BuildXYZ.json
     Remove-TFSBuildDefinition BuildXYZ
 
 Repositories
