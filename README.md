@@ -80,7 +80,7 @@ Builds
 Build Definitions
 -----------------
 
-    Get-TFSBuildDefinition BuildXYZ -JsonFile BuildXYZ.json
+    Get-TFSBuildDefinition BuildXYZ -OutFile BuildXYZ.json
     Get-TFSBuildDefinitionHistory BuildXYZ
     New-TFSBuildDefinition -JsonFile BuildXYZ.json
     Update-TFSBuildDefinition -JsonFile BuildXYZ.json
