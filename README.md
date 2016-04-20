@@ -75,6 +75,7 @@ Builds
     Get-TFSBuilds -Tag production
     Remove-TFSBuildTag 220 production
 
+    Get-TFSQueues
 
 Build Definitions
 -----------------
@@ -85,12 +86,15 @@ Build Definitions
     Update-TFSBuildDefinition -JsonFile BuildXYZ.json
     Remove-TFSBuildDefinition BuildXYZ
 
+    Invoke-TFSBuild -Id BuildXYZ
+
 Repositories
 ------------
 
     Get-TFSGitRepositories
     New-TFSGitRepository test
     Remove-TFSGitRepository test
+
 
 Troubleshooting
 ---------------
