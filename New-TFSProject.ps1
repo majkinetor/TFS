@@ -9,7 +9,10 @@ function New-TFSProject {
     [CmdletBinding()]
     param(
      [string] $Name,
-     [string] $Description
+     [string] $Description,
+     [ValidateSet( 'Git', 'Tfvc')]
+     [string] $SourceControlType='Git',
+     [string] $ProcessTemplate = 'Agile'
     )
     check_credential
 
@@ -21,12 +24,11 @@ function New-TFSProject {
         description = $Description
         capabilities = @{
             processTemplate = @{ templateTypeId = 'adcc42ab-9882-485e-a3ed-7678f01f66bc' }
-            versioncontrol  = @{ sourceControlType = 'Git' }
+            versioncontrol  = @{ sourceControlType = $SourceControlType }
         }
     }
 
     $body = $body | ConvertTo-Json
-    $body
     $params = @{ Uri = $uri; Method = 'Post'; Body = $body; ContentType = 'application/json' }
     invoke_rest $params
 }
