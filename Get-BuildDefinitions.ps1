@@ -10,7 +10,7 @@ function Get-BuildDefinitions {
     param (
         #Return raw data instead of the table
         [switch]$Raw,
-        #Filters to definitions whose names start with this value. Globs supported
+        #Filters to definitions whose names start with this value. Globs supported.
         [string]$Name
     )
     check_credential
