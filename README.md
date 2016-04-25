@@ -55,8 +55,6 @@ Usage
 
 To view all supported commands execute `gcm -m tfs`. Use `man` to get help for the command.
 
-The following section list some example usages. 
-
 All functions have a `Verbose` parameter that shows very detailed logs of every step involved:
 
     PS> Get-BuildLogs -Verbose
