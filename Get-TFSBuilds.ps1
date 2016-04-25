@@ -31,7 +31,7 @@ function Get-TFSBuilds {
         #Builds that finished after this time
         [datetime]$MinFinishTime,
         #Builds that finished before this time
-        [datetime]$MaxFinishTime
+        [datetime]$MaxFinishTime,
         #A comma-delimited list of extended properties to retrieve
         [string]$Properties
 
