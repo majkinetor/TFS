@@ -1,4 +1,4 @@
-$time_format    = "yy-MM-dd HH\:mm"
+$time_format    = "yy-MM-dd HH\:mm\:ss"
 $collection_uri = "{0}/{1}" -f $global:tfs.root_url, $global:tfs.collection
 $proj_uri       = "{0}/{1}" -f $collection_uri, $global:tfs.project
 
