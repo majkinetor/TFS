@@ -1,5 +1,5 @@
 # Author: Miodrag Milic <miodrag.milic@gmail.com>
-# Last Change: 14-Apr-2016.
+# Last Change: 25-Apr-2016.
 
 <#
 .SYNOPSIS
@@ -23,8 +23,8 @@ function Get-TFSBuildLogs{
     )
     check_credential
 
-    if ($Id -eq '') { $Id = Get-TFSBuilds -Raw | select -First 1 -Expand id }
-    if ($Id -eq $null) { throw "Can't find latest build or there are no builds" }
+    if ($Id -eq '') { $Id = Get-TFSBuilds -Raw -Top 1 | % id }
+    if ($Id -eq $null) { throw "Can't find latest build or there are no builds: '$Id'" }
     Write-Verbose "Build id: $Id"
 
     $uri = "$proj_uri/_apis/build/builds/$Id/logs?api-version=" + $global:tfs.api_version

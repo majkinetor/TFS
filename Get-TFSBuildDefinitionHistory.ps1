@@ -1,5 +1,5 @@
 # Author: Miodrag Milic <miodrag.milic@gmail.com>
-# Last Change: 14-Apr-2016.
+# Last Change: 25-Apr-2016.
 
 <#
 .SYNOPSIS
@@ -16,8 +16,8 @@ function Get-TFSBuildDefinitionHistory{
     check_credential
 
 
-    if (($Id -ne $null) -and ($Id.GetType() -eq [string])) { $Id = Get-TFSBuildDefinitions | ? name -eq $Id | select -Expand id }
-    if ($Id -eq $null) { throw "Build definition with that name or id doesn't exist" }
+    if ( ![String]::IsNullOrEmpty($Id) -and ($Id.GetType() -eq [string]) ) { $Id = Get-TFSBuildDefinitions -Name $Id | % id }
+    if ( [String]::IsNullOrEmpty($Id) ) { throw "Build definition with that name or id doesn't exist: '$Id' " }
     Write-Verbose "Build definition history id: $Id"
 
     $uri = "$proj_uri/_apis/build/definitions/$($Id)/revisions?api-version=" + $global:tfs.api_version

@@ -1,5 +1,5 @@
 # Author: Miodrag Milic <miodrag.milic@gmail.com>
-# Last Change: 19-Apr-2016.
+# Last Change: 25-Apr-2016.
 
 <#
 .SYNOPSIS
@@ -13,7 +13,7 @@ function Invoke-TFSBuild {
     )
     check_credential
 
-    if ($Id.GetType() -eq [string]) { $Id = Get-TFSBuildDefinitions | ? name -eq $Id | select -Expand id }
+    if ( ![String]::IsNullOrEmpty($Id) -and ($Id.GetType() -eq [string]) ) { $Id = Get-TFSBuildDefinitions -Name $Id | % id }
     if ( [String]::IsNullOrEmpty($Id) ) { throw "Resource with that name doesn't exist" }
     Write-Verbose "Build definition id: '$Id'"
 
