@@ -26,8 +26,8 @@ function Get-TFSBuilds {
         [int]$MaxBuildsPerDefinition = 5,
         #Builds requested by this user, SAM account name
         [string]$RequestedFor,
-        #Filters to builds with build numbers that start with this value.
-        [int]$BuildNumber=0,
+        #Filters to builds with build numbers that start with this value. Globs supported
+        [string]$BuildNumber,
         #Builds that finished after this time
         [datetime]$MinFinishTime,
         #Builds that finished before this time

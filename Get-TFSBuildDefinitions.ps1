@@ -1,5 +1,5 @@
 # Author: Miodrag Milic <miodrag.milic@gmail.com>
-# Last Change: 14-Apr-2016.
+# Last Change: 25-Apr-2016.
 
 <#
 .SYNOPSIS
@@ -9,11 +9,14 @@ function Get-TFSBuildDefinitions {
     [CmdletBinding()]
     param (
         #Return raw data instead of the table
-        [switch]$Raw
+        [switch]$Raw,
+        #Filters to definitions whose names start with this value. Globs supported
+        [string]$Name
     )
     check_credential
 
-    $uri = "$proj_uri/_apis/build/definitions?api-version=" + $global:tfs.api_version
+    if ($Name) { $q_name = 'name=' + $Name + '&' }
+    $uri = "$proj_uri/_apis/build/definitions?$($q_name)api-version=" + $global:tfs.api_version
     Write-Verbose "URI: $uri"
 
     $params = @{ Uri = $uri; Method = 'Get'}
