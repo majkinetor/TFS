@@ -12,7 +12,7 @@ function check_credential() {
     }
 
     Write-Verbose 'No credentials specified, trying Windows Credential Manager'
-    $global:tfs.Credential = Get-TFSSToredCredential
+    $global:tfs.Credential = Get-SToredCredential
 }
 
 function invoke_rest($Params) {

@@ -47,63 +47,18 @@ To use _ad hoc_ credentials when you have your main credential stored simply use
 
 This way stored credentials will be overridden only for the current session. To change the stored credentials for all subsequent sessions either delete them using the Control Panel (Manage Windows Credentials) and run any function again or use the following command:
 
-    $tfs.Credentials = New-TFSCredential    #Get credential and store it in Credential Manager.
+    $tfs.Credentials = New-Credential    #Get credential and store it in Credential Manager.
 
-Commands
-========
+Usage
+=====
 
 To view all supported commands execute `gcm -m tfs`. Use `man` to get help for the command.
 
 The following section list some example usages. 
 
-Projects
---------
-
-    Get-TFSProjects
-    Get-TFSProject 'ProjectXYZ'
-    Get-TFSProject 1
-
-Builds
-------
-
-    Get-TFSBuilds
-
-    Get-TFSBuildLogs
-    Get-TFSBuildLogs 220
-
-    Remove-TFSBuild 220
-    
-    'production', 'v1.0' | % { Add-TFSBuildTag 220 $_ }
-    Get-TFSBuilds -Tag production
-    Remove-TFSBuildTag 220 production
-
-    Get-TFSQueues
-
-Build Definitions
------------------
-
-    Get-TFSBuildDefinition BuildXYZ -OutFile BuildXYZ.json
-    Get-TFSBuildDefinitionHistory BuildXYZ
-    New-TFSBuildDefinition -JsonFile BuildXYZ.json
-    Update-TFSBuildDefinition -JsonFile BuildXYZ.json
-    Remove-TFSBuildDefinition BuildXYZ
-
-    Invoke-TFSBuild -Id BuildXYZ
-
-Repositories
-------------
-
-    Get-TFSGitRepositories
-    New-TFSGitRepository test
-    Remove-TFSGitRepository test
-
-
-Troubleshooting
----------------
-
 All functions have a `Verbose` parameter that shows very detailed logs of every step involved:
 
-    PS> Get-TFSBuildLogs -Verbose
+    PS> Get-BuildLogs -Verbose
 
     VERBOSE: No credentials specified, trying Windows Credential Manager
     VERBOSE: Populating RepositorySourceLocation property for module CredentialManager.
