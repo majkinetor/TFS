@@ -4,6 +4,24 @@
 <#
 .SYNOPSIS
     Get the TFS build list
+.EXAMPLE
+    Get-TFSBuilds
+
+    Return last 10 builds
+.EXAMPLE
+    builds -BuildNumber 80[0-4]
+
+    Return builds 800 - 804
+
+.EXAMPLE
+    builds -Definitions Def1, Def2 -MaxBuildsPerDefinition 2
+
+    Return only 2 last builds for definition Def1 & Def 2
+
+.EXAMPLE
+    Get-TFSBuilds -Tag production,v1
+
+    Get only builds that are tagged with 'production' and 'v1' keyword
 #>
 function Get-TFSBuilds {
     [CmdletBinding()]
