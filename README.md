@@ -3,6 +3,8 @@ TFS
 
 This is Powershell module to communicate with [Team Foundation Server](https://www.visualstudio.com/en-us/products/tfs-overview-vs.aspx) 2015 via its [REST interface](https://www.visualstudio.com/integrate/get-started/rest/basics). It provides commands which allow you to create, update, export and import build definitions, get build logs, projects, repositories etc. The goal of the module is to be able to automate TFS setup and put its configuration on the project repository.
 
+The module is tested with Team Foundation Server Update 2.
+
 Installation
 ============
 
