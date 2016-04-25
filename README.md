@@ -10,7 +10,7 @@ Installation
 
 Copy module to the one of the directories listed in `$Env:PSModulePath`. To install only for current copy the module using following command:
 
-   cp TFS ~/Documents/WindowsPowerShell/Modules
+    cp TFS ~/Documents/WindowsPowerShell/Modules
 
 Configuration
 =============
