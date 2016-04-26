@@ -4,6 +4,10 @@
 <#
 .SYNOPSIS
     Remove the TFS build definition
+.EXAMPLE
+     defs | % { rmdef $_.Name }
+
+     Remove all build definitions from the project. The example is using aliases
 #>
 function Remove-TFSBuildDefinition {
     [CmdletBinding()]
@@ -13,7 +17,7 @@ function Remove-TFSBuildDefinition {
     )
     check_credential
 
-    if ( ![String]::IsNullOrEmpty($Id) -and ($Id.GetType() -eq [string]) ) { $Id = Get-TFSBuildDefinitions -Name -$Id | % id }
+    if ( ![String]::IsNullOrEmpty($Id) -and ($Id.GetType() -eq [string]) ) { $Id = Get-TFSBuildDefinitions -Name $Id | % id }
     if ( [String]::IsNullOrEmpty($Id) ) { throw "Resource with that name doesn't exist" }
     Write-Verbose "Build definition id: $Id"
 
