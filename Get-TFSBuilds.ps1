@@ -85,8 +85,8 @@ function Get-TFSBuilds {
             Result      = $r.result
             Definition  = $r.definition.name
             StartTime   = get-date $r.startTime
-            FinishTime  = get-date $r.finishTime
-            Duration    = [math]::round( ((get-date $r.finishTime) - (get-date $r.startTime)).TotalMinutes, 1)
+            FinishTime  = if ($r.finishTime) { get-date $r.finishTime } else {}
+            Duration    = if ($r.finishTime) { [math]::round( ((get-date $r.finishTime) - (get-date $r.startTime)).TotalMinutes, 1) } else {}
             Tags        = $r.tags -split ' '
 
         }
