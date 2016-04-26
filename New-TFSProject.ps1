@@ -4,6 +4,10 @@
 <#
 .SYNOPSIS
     Create new TFS project
+.EXAMPLE
+    New-TFSProject -Name Test -Description 'Test project' -ProcessTemplate Scrum
+
+    Create a new TFS team project with given name and description and use Scrum process template.
 #>
 function New-TFSProject {
     [CmdletBinding()]

@@ -26,4 +26,4 @@ function Invoke-TFSBuild {
     $r = invoke_rest $params
 }
 
-sal build Invoke-Build
+sal build Invoke-TFSBuild
