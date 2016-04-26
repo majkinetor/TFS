@@ -1,5 +1,5 @@
 # Author: Miodrag Milic <miodrag.milic@gmail.com>
-# Last Change: 25-Apr-2016.
+# Last Change: 26-Apr-2016.
 
 <#
 .SYNOPSIS
@@ -8,22 +8,30 @@
 function New-TFSProject {
     [CmdletBinding()]
     param(
-     [string] $Name,
-     [string] $Description,
-     [ValidateSet( 'Git', 'Tfvc')]
-     [string] $SourceControlType='Git',
-     [string] $ProcessTemplate = 'Agile'
+        #Name for the project
+        [string] $Name,
+        #Description for the project
+        [string] $Description,
+        #Version control type for the project
+        [ValidateSet( 'Git', 'Tfvc')]
+        [string] $SourceControlType='Git',
+        #Software development schema for the project
+        [string] $ProcessTemplate = 'Agile'
     )
     check_credential
 
     $uri = "$collection_uri/_apis/projects/?api-version=" + $global:tfs.api_version
     Write-Verbose "URI: $uri"
 
+    $templateId = Get-TFSProcesses | ? name -eq $ProcessTemplate | % id
+    if (!$templateId) { throw "No template exists with name: '$ProcessTemplate'" }
+    Write-Verbose "Template id for '$ProcessTemplate': $templateId"
+
     $body = @{
         name = $Name
         description = $Description
         capabilities = @{
-            processTemplate = @{ templateTypeId = 'adcc42ab-9882-485e-a3ed-7678f01f66bc' }
+            processTemplate = @{ templateTypeId    = $templateId }
             versioncontrol  = @{ sourceControlType = $SourceControlType }
         }
     }

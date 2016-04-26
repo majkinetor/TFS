@@ -1,11 +1,11 @@
 # Author: Miodrag Milic <miodrag.milic@gmail.com>
-# Last Change: 25-Apr-2016.
+# Last Change: 26-Apr-2016.
 
 <#
 .SYNOPSIS
     Get the TFS processes
 #>
-function Get-Processes {
+function Get-TFSProcesses {
     [CmdletBinding()]
     param(
     )
