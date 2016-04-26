@@ -1,5 +1,5 @@
 # Author: Miodrag Milic <miodrag.milic@gmail.com>
-# Last Change: 14-Apr-2016.
+# Last Change: 26-Apr-2016.
 
 <#
 .SYNOPSIS
@@ -13,7 +13,7 @@ function Remove-TFSGitRepository {
     )
     check_credential
 
-    $id = Get-TFSGitRepositories -Raw | ? name -eq $Name | % id
+    $id = Get-TFSGitRepositories | ? name -eq $Name | % id
     Write-Verbose "Repository id: $id"
 
     $uri = "$proj_uri/_apis/git/repositories/$($id)?api-version=" + $tfs.api_version

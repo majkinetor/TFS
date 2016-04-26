@@ -3,14 +3,22 @@
 
 <#
 .SYNOPSIS
-    Get the list of projects from the TFS server
+    Get the list of team projects from the TFS server
 #>
 function Get-TFSProjects{
     [CmdletBinding()]
-    param()
+    param(
+        #Maxium number of team projects to return, by default 100
+        [int] $Top=100,
+        #Number of team projects to skip, by default 0
+        [int] $Skip=0
+    )
     check_credential
 
-    $uri = "$collection_uri/_apis/projects?api-version=" + $global:tfs.api_version
+    $q_top  = '$top=' + $Top + '&'
+    $q_skip = '$skip=' + $Skip + '&'
+    $query_args = $q_top + $q_skip
+    $uri = "$collection_uri/_apis/projects?$($query_args)api-version=" + $global:tfs.api_version
     Write-Verbose "URI: $uri"
 
     $params = @{ Uri = $uri; Method = 'Get'}

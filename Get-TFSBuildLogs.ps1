@@ -1,5 +1,5 @@
 # Author: Miodrag Milic <miodrag.milic@gmail.com>
-# Last Change: 25-Apr-2016.
+# Last Change: 26-Apr-2016.
 
 <#
 .SYNOPSIS
@@ -23,7 +23,7 @@ function Get-TFSBuildLogs{
     )
     check_credential
 
-    if ($Id -eq '') { $Id = Get-TFSBuilds -Raw -Top 1 | % id }
+    if ($Id -eq '') { $Id = Get-TFSBuilds -Top 1 | % BuildNumber }
     if ($Id -eq $null) { throw "Can't find latest build or there are no builds" }
     Write-Verbose "Build id: $Id"
 
