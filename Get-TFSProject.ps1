@@ -17,6 +17,7 @@ function Get-TFSProject {
     [CmdletBinding()]
     param(
         #Id or name of the project
+        [ValidateNotNullOrEmpty()]
         [string]$Id
     )
     check_credential
