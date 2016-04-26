@@ -1,11 +1,11 @@
 # Author: Miodrag Milic <miodrag.milic@gmail.com>
-# Last Change: 13-Apr-2016.
+# Last Change: 26-Apr-2016.
 
 <#
 .SYNOPSIS
-    Get stored TFS credential from the Windows Credential Manager. If none is available, create and store one.
+    Get saved TFS credential from the Windows Credential Manager. If none is available, create and store one.
 #>
-function Get-StoredCredential {
+function Get-SavedCredential {
     [CmdletBinding()]
     param()
 
@@ -15,7 +15,7 @@ function Get-StoredCredential {
         try {
             Write-Verbose "Trying to get storred credentials for '$($global:tfs.root_url)'"
             $cred = Get-StoredCredential -Target $global:tfs.root_url
-        } catch { }
+        } catch { throw $_ }
     }
 
     if ($cred -eq $null) { $cred = New-Credential } else { Write-Verbose 'Stored credentials retrieved' }
