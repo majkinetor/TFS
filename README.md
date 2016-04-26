@@ -53,11 +53,11 @@ This way stored credentials will be overridden only for the current session. To 
 Usage
 =====
 
-To view all supported commands execute `gcm -m tfs`. Use `man` to get help for the command.
+To view all supported commands execute `gcm -m tfs`. Use `man` to get help for the command. To get all aliases, use `get-alias | ? source -eq 'tfs'`
 
 All functions have a `Verbose` parameter that shows very detailed logs of every step involved:
 
-    PS> Get-BuildLogs -Verbose
+    PS> Get-TFSBuildLogs -Verbose
 
     VERBOSE: No credentials specified, trying Windows Credential Manager
     VERBOSE: Populating RepositorySourceLocation property for module CredentialManager.
