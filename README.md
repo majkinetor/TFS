@@ -53,9 +53,9 @@ This way stored credentials will be overridden only for the current session. To 
 Usage
 =====
 
-* To view all supported commands execute `gcm -m tfs`. 
+* To view all supported commands execute `gcm -m tfs` 
 * To get all aliases execute `get-alias | ? source -eq 'tfs'`
-* Use `man` to get help for the command. 
+* Use `man` to get help for the command: `man builds -Example`
 
 All functions have a `Verbose` parameter that shows very detailed log of every step involved:
 
