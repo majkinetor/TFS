@@ -8,8 +8,9 @@ The module is tested with Team Foundation Server Update 2.
 Installation
 ============
 
-Copy module to the one of the directories listed in `$Env:PSModulePath`.
+On Windows 10 or Powershell 5+ use: `Install-Module TFS`. 
 
+To install manually, copy the module to the one of the directories listed in `$Env:PSModulePath`.
 
 Configuration
 =============
