@@ -1,25 +1,29 @@
 # Author: Miodrag Milic <miodrag.milic@gmail.com>
-# Last Change: 26-Apr-2016.
+# Last Change: 27-Apr-2016.
 
 <#
 .SYNOPSIS
-    Get the build definition
+    Get the TFS build definition
 
 .EXAMPLE
-    PS> Get-TFSBuildDefinition Build1
+    Get-TFSBuildDefinition Build1
 
-    Get the build definition by name.
-
-.EXAMPLE
-    PS> Get-TFSBuildDefinition Build1 -OutFile build1.json
-
-    Exports the build definition named Build1 to JSON file 'build1.json' in the current directory.
+    Get the TFS build definition by name.
 
 .EXAMPLE
-    PS> Get-TFSBuildDefinition 5 -OutFile .
+    Get-TFSBuildDefinition Build1 -OutFile build1.json
+
+    Exports the TFS build definition named Build1 to JSON file 'build1.json' in the current directory.
+
+.EXAMPLE
+    Get-TFSBuildDefinition 5 -OutFile .
 
     Exports the build definition to json file in the current directory. '.' is a special value for the file
     to be automatically named as <Project>-<BuildName>.json in the current directory.
+.EXAMPLE
+    defs | % { def $_.Id -OutFile . }
+
+    Export all TFS build definitions on the project. The example is using aliases.
 #>
 function Get-TFSBuildDefinition{
     [CmdletBinding()]
