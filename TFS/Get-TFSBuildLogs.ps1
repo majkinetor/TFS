@@ -23,10 +23,10 @@ function Get-TFSBuildLogs{
     )
     check_credential
 
-    if ($Id -eq '') { $Id = Get-TFSBuilds -Top 1 | % BuildNumber }
+    if ($Id -eq '') { $Id = Get-TFSBuilds -Top 1 | %{ $_.Id } }
     if ($Id -eq $null) { throw "Can't find latest build or there are no builds" }
     Write-Verbose "Build id: $Id"
-
+    
     $uri = "$proj_uri/_apis/build/builds/$Id/logs?api-version=" + $global:tfs.api_version
     Write-Verbose "Logs URI: $uri"
 

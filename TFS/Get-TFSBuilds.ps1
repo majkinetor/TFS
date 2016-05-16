@@ -81,6 +81,7 @@ function Get-TFSBuilds {
     foreach ($r in $r.value) {
         $b = [pscustomobject]@{
             Raw         = $r
+            Id          = $r.id
             BuildNumber = $r.buildNumber
             Result      = $r.result
             Definition  = $r.definition.name
