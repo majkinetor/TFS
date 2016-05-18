@@ -1,11 +1,11 @@
 # Author: Miodrag Milic <miodrag.milic@gmail.com>
-# Last Change: 11-Apr-2016.
+# Last Change: 18-May-2016.
 
 <#
 .SYNOPSIS
     Create and optionaly store the TFS credentials
 #>
-function New-Credential {
+function New-TFSCredential {
     [CmdletBinding()]
     param(
         # TFS credential

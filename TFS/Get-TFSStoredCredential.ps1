@@ -1,5 +1,5 @@
 # Author: Miodrag Milic <miodrag.milic@gmail.com>
-# Last Change: 26-Apr-2016.
+# Last Change: 18-May-2016.
 
 <#
 .SYNOPSIS
@@ -15,7 +15,9 @@ function Get-TFSStoredCredential {
         try {
             Write-Verbose "Trying to get storred credentials for '$($global:tfs.root_url)'"
             $cred = Get-StoredCredential -Target $global:tfs.root_url
-        } catch { throw $_ }
+        } catch {
+            if ($_.Exception.Message -ne 'CredRead failed with the error code 1168.') { throw $_ }
+        }
     }
 
     if ($cred -eq $null) { $cred = New-TFSCredential } else { Write-Verbose 'Stored credentials retrieved' }
