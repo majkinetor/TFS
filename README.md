@@ -17,12 +17,10 @@ Configuration
 
 Module uses global variable `$tfs` for its configuration:
 
-    $tfs = @{
+    $global:tfs = @{
         root_url    = 'http://tfs015:8080/tfs'
         collection  = 'DefaultCollection'
         project     = 'ProjectXYZ'
-        credential  = Get-Credential
-        api_version = '1.0'
     }
 
 Some attributes will take defaults if you don't specify them:
