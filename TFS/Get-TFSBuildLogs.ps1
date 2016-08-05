@@ -1,5 +1,5 @@
 # Author: Miodrag Milic <miodrag.milic@gmail.com>
-# Last Change: 26-Apr-2016.
+# Last Change: 05-Aug-2016.
 
 <#
 .SYNOPSIS
@@ -14,6 +14,11 @@
     PS> Get-TFSBuildLogs 250
 
     Returns logs of the build by id
+
+.EXAMPLE
+    PS>  Get-TFSBuilds -Definitions MyDefinition | select -First 1 | % BuildNumber | % { Get-TFSBuildLogs $_ }
+
+    Return logs of the latest build for given build definition
 #>
 function Get-TFSBuildLogs{
     [CmdletBinding()]
