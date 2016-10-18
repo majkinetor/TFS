@@ -10,6 +10,9 @@ function Invoke-TFSBuild {
     param(
         #Build defintion id [int] or name [string]
         $Id
+        
+        #Optional source branch [string]
+        [string] $sourceBranch = "" 
     )
     check_credential
 
@@ -21,6 +24,7 @@ function Invoke-TFSBuild {
     Write-Verbose "URI: $uri"
 
     $body = @{ definition=@{ id = $Id } }
+    if ( $sourceBranch -ne "" ) { $body.sourceBranch = $sourceBranch } 
     $body = $body | ConvertTo-Json
     $params = @{ Uri = $uri; Method = 'Post'; Body = $body; ContentType = 'application/json' }
     $r = invoke_rest $params
