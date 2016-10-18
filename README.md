@@ -1,4 +1,4 @@
-[![](https://img.shields.io/badge/PowerShell%20Gallery-tfs-blue.svg)](https://www.powershellgallery.com/packages/TFS)
+[![](https://img.shields.io/badge/PowerShell%20Gallery-TFS-blue.svg)](https://www.powershellgallery.com/packages/tfs)
 
 TFS
 ===
