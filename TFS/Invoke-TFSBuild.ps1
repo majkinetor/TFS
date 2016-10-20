@@ -10,7 +10,6 @@ function Invoke-TFSBuild {
     param(
         #Build defintion id [int] or name [string]
         $Id,
-
         #Optional source branch
         [string] $sourceBranch = ''
     )
