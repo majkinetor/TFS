@@ -1,5 +1,5 @@
 # Author: Miodrag Milic <miodrag.milic@gmail.com>
-# Last Change: 26-Apr-2016.
+# Last Change: 20-Oct-2016.
 
 <#
 .SYNOPSIS
@@ -9,10 +9,10 @@ function Invoke-TFSBuild {
     [CmdletBinding()]
     param(
         #Build defintion id [int] or name [string]
-        $Id
-        
-        #Optional source branch [string]
-        [string] $sourceBranch = "" 
+        $Id,
+
+        #Optional source branch
+        [string] $sourceBranch = ''
     )
     check_credential
 
@@ -24,7 +24,7 @@ function Invoke-TFSBuild {
     Write-Verbose "URI: $uri"
 
     $body = @{ definition=@{ id = $Id } }
-    if ( $sourceBranch -ne "" ) { $body.sourceBranch = $sourceBranch } 
+    if ( $sourceBranch -ne "" ) { $body.sourceBranch = $sourceBranch }
     $body = $body | ConvertTo-Json
     $params = @{ Uri = $uri; Method = 'Post'; Body = $body; ContentType = 'application/json' }
     $r = invoke_rest $params
