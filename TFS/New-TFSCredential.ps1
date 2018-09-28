@@ -21,7 +21,7 @@ function New-TFSCredential {
     if (($global:tfs.root_url -eq '') -or ($global:tfs.root_url -eq $null)) { throw 'You must set $global:tfs.root_url in order to store credentials' }
 
     Write-Verbose "Storing credential for target '$($global:tfs.root_url)'"
-    New-StoredCredential -Target $global:tfs.root_url -UserName $Credential.UserName -Password $Credential.GetNetworkCredential().Password -Persist LOCAL_MACHINE | Out-Null
+    New-StoredCredential -Target $global:tfs.root_url -UserName $Credential.UserName -Password $Credential.GetNetworkCredential().Password -Persist LocalMachine | Out-Null
 
     return $Credential
 }
